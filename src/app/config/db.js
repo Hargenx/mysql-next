@@ -8,17 +8,17 @@ const pool = mysql.createPool({
     database: 'aula2024'
 });
 
-// Ping database to check for common exception errors.
+// Verifica a base de dados para checar por exceções e erros comuns.
 pool.getConnection((err, connection) => {
     if (err) {
         if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-            console.error('Database connection was closed.');
+            console.error('Base de dados perdeu a conexão. ');
         }
         if (err.code === 'ER_CON_COUNT_ERROR') {
-            console.error('Database has too many connections.');
+            console.error('Base de dados tem muitas conexões.');
         }
         if (err.code === 'ECONNREFUSED') {
-            console.error('Database connection was refused.');
+            console.error('Base de dados teve a conexão recusada.');
         }
     }
 
@@ -27,7 +27,7 @@ pool.getConnection((err, connection) => {
     return;
 });
 
-// Promisify for Node.js async/await.
+// Promisify para o método query.
 pool.query = util.promisify(pool.query);
 
 const executeQuery = (query, arraParms) => {
@@ -35,7 +35,7 @@ const executeQuery = (query, arraParms) => {
         try {
             pool.query(query, arraParms, (err, data) => {
                 if (err) {
-                    console.log("error in executing the query");
+                    console.log("Erro ao executar a query");
                     reject(err);
                 }
                 resolve(data);
