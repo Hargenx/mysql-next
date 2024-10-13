@@ -8,6 +8,18 @@ const pool = mysql.createPool({
     database: 'aula2024'
 });
 
+/*
+CREATE TABLE `images` (
+  `emp_id` int(11) NOT NULL AUTO_INCREMENT,
+  `emp_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `emp_email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `emp_address` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `emp_phone` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+   PRIMARY KEY (`emp_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci; 
+
+*/
+
 // Verifica a base de dados para checar por exceções e erros comuns.
 pool.getConnection((err, connection) => {
     if (err) {
